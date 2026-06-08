@@ -530,6 +530,9 @@ run_dashboard()
 | Đinh Nguyễn Nhật Lâm | — | Xây dựng RAG Pipeline (Tasks 1-10) + Phát triển Chatbot UI | ✅ Hoàn thành |
 | Tạ Văn Huấn | — | Thu thập & Chuẩn hoá dữ liệu (legal/news) + Thiết kế Golden Dataset | ✅ Hoàn thành |
 | Trần Gia Huy | — | Tích hợp Reranking, Fallback PageIndex + So sánh A/B & Chạy Evaluation | ✅ Hoàn thành |
+| Vũ Duy Bảo | — | Thiết kế Chunking & Indexing ChromaDB + Triển khai giao diện chatbot | ✅ Hoàn thành |
+| Vũ Quang Bảo | — | Xây dựng bộ tìm kiếm Hybrid Search + Viết tài liệu Hướng dẫn sử dụng | ✅ Hoàn thành |
+| Phạm Mạnh Thắng | — | Xây dựng các metrics đánh giá & phân tích worst performers | ✅ Hoàn thành |
 
 ---
 
