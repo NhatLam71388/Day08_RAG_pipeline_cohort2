@@ -75,6 +75,39 @@ def format_context(chunks: list[dict]) -> str:
     return "\n\n---\n\n".join(parts)
 
 
+def _call_llm_gemini(system_prompt: str, user_message: str) -> str:
+    """Gọi Gemini API với cơ chế tự động retry khi gặp Rate Limit (429)."""
+    import google.generativeai as genai
+    import time
+
+    genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+    model = genai.GenerativeModel(
+        model_name="gemini-3.5-flash",
+        system_instruction=system_prompt,
+        generation_config={
+            "temperature": TEMPERATURE,
+            "top_p": TOP_P,
+            "max_output_tokens": 1024,
+        }
+    )
+
+    max_retries = 2
+    base_delay = 2.0
+    for attempt in range(max_retries):
+        try:
+            response = model.generate_content(user_message)
+            return response.text
+        except Exception as e:
+            err_str = str(e)
+            if "429" in err_str or "Quota exceeded" in err_str:
+                delay = base_delay * (1.5 ** attempt)
+                print(f"  ⚠ Gemini Rate Limit (429). Đang chờ {delay:.1f} giây trước khi thử lại... (Lượt {attempt+1}/{max_retries})")
+                time.sleep(delay)
+            else:
+                raise e
+    raise RuntimeError("Vượt quá số lần thử lại tối đa cho Gemini API do rate limits.")
+
+
 def _call_llm_openai(system_prompt: str, user_message: str) -> str:
     """Gọi OpenAI API."""
     from openai import OpenAI
@@ -107,14 +140,20 @@ def _call_llm_claude(system_prompt: str, user_message: str) -> str:
 
 
 def _call_llm(system_prompt: str, user_message: str) -> str:
-    """Gọi LLM — ưu tiên Claude, fallback OpenAI, fallback mock."""
+    """Gọi LLM — ưu tiên Gemini, fallback Claude, fallback OpenAI, fallback mock."""
+    if os.getenv("GEMINI_API_KEY"):
+        try:
+            return _call_llm_gemini(system_prompt, user_message)
+        except Exception as e:
+            print(f"  ⚠ Gemini API lỗi: {e}")
+
     if os.getenv("ANTHROPIC_API_KEY"):
         try:
             return _call_llm_claude(system_prompt, user_message)
         except Exception as e:
             print(f"  ⚠ Claude API lỗi: {e}")
 
-    if os.getenv("OPENAI_API_KEY"):
+    if os.getenv("OPENAI_API_KEY") and not os.getenv("OPENAI_API_KEY").startswith("sk-xxx"):
         try:
             return _call_llm_openai(system_prompt, user_message)
         except Exception as e:
@@ -125,6 +164,7 @@ def _call_llm(system_prompt: str, user_message: str) -> str:
         "Tôi không thể xác minh thông tin này từ nguồn hiện có "
         "(API key chưa được cấu hình trong .env)."
     )
+
 
 
 def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:

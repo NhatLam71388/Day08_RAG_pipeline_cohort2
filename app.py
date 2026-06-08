@@ -33,49 +33,86 @@ st.set_page_config(
 
 st.markdown("""
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    
+    html, body, [class*="css"], .stApp {
+        font-family: 'Inter', sans-serif !important;
+    }
+    
     .main-header {
-        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-        padding: 20px;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        color: white;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-left: 6px solid #2563eb;
+        padding: 24px;
+        border-radius: 12px;
+        margin-bottom: 24px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    }
+    .main-header h1 {
+        color: #0f172a !important;
+        font-size: 2.2rem !important;
+        font-weight: 700 !important;
+        margin: 0 0 8px 0 !important;
+    }
+    .main-header p {
+        color: #475569 !important;
+        font-size: 1rem !important;
+        margin: 0 !important;
     }
     .source-card {
-        background: #f8f9fa;
-        border-left: 4px solid #0f3460;
-        padding: 10px;
-        margin: 5px 0;
-        border-radius: 4px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-left: 4px solid #2563eb;
+        padding: 12px;
+        margin: 8px 0;
+        border-radius: 8px;
         font-size: 0.85em;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .source-card:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.1);
     }
     .legal-badge {
-        background: #d4edda;
-        color: #155724;
-        padding: 2px 8px;
-        border-radius: 12px;
+        background: #dbeafe;
+        color: #1e40af;
+        padding: 4px 10px;
+        border-radius: 9999px;
         font-size: 0.75em;
-        font-weight: bold;
+        font-weight: 600;
+        border: 1px solid #bfdbfe;
+        display: inline-block;
+        margin-bottom: 6px;
     }
     .news-badge {
-        background: #cce5ff;
-        color: #004085;
-        padding: 2px 8px;
-        border-radius: 12px;
+        background: #fef3c7;
+        color: #92400e;
+        padding: 4px 10px;
+        border-radius: 9999px;
         font-size: 0.75em;
-        font-weight: bold;
+        font-weight: 600;
+        border: 1px solid #fde68a;
+        display: inline-block;
+        margin-bottom: 6px;
     }
     .metric-box {
-        background: #e9ecef;
-        padding: 10px;
-        border-radius: 8px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        padding: 14px;
+        border-radius: 10px;
         text-align: center;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
     }
     .retrieval-info {
-        background: #fff3cd;
-        border: 1px solid #ffc107;
-        border-radius: 6px;
-        padding: 8px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 10px 14px;
         font-size: 0.8em;
+        color: #475569;
+        margin-top: 10px;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
     }
 </style>
 """, unsafe_allow_html=True)

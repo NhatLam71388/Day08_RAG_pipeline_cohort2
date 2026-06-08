@@ -527,10 +527,9 @@ run_dashboard()
 
 | Thành viên | MSSV | Nhiệm vụ | Trạng thái |
 |-----------|------|----------|------------|
-| | | | |
-| | | | |
-| | | | |
-| | | | |
+| Đinh Nguyễn Nhật Lâm | — | Xây dựng RAG Pipeline (Tasks 1-10) + Phát triển Chatbot UI | ✅ Hoàn thành |
+| Tạ Văn Huấn | — | Thu thập & Chuẩn hoá dữ liệu (legal/news) + Thiết kế Golden Dataset | ✅ Hoàn thành |
+| Trần Gia Huy | — | Tích hợp Reranking, Fallback PageIndex + So sánh A/B & Chạy Evaluation | ✅ Hoàn thành |
 
 ---
 

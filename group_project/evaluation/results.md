@@ -1,7 +1,7 @@
 # RAG Evaluation Results
 
 **Framework:** Custom Rule-Based Metrics (Offline — không cần API)
-**Ngày chạy:** 2026-06-08 14:24
+**Ngày chạy:** 2026-06-08 16:05
 **Golden dataset:** 18 câu hỏi
 
 ---
@@ -111,4 +111,4 @@
 
 ---
 
-*Báo cáo tự động — DrugLaw RAG Evaluation | 2026-06-08 14:24*
+*Báo cáo tự động — DrugLaw RAG Evaluation | 2026-06-08 16:05*
